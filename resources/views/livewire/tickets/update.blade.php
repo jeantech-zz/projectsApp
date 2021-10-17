@@ -20,13 +20,24 @@
                 <input wire:model="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="status"></label>
-                <input wire:model="status" type="text" class="form-control" id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="storie_id"></label>
-                <input wire:model="storie_id" type="text" class="form-control" id="storie_id" placeholder="Storie Id">@error('storie_id') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
+                        <label>Status</label>
+                        <select wire:model="status" class="form-control" name="status">
+                            <option selected>Select Status</option>
+                            <option value="Activo">Activo</option>
+                            <option value="En Proceso"> En Proceso</option>
+                            <option value="Finalizado">Finalizado</option>
+                        </select>
+                        @error('status') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <select wire:model="story_id"  name="story_id" class="form-control custom-select">
+                            <option value="">Select Stories</option>
+                            @foreach($storys as $story)}
+                                <option value="{{ $story->id }}">{{ $story->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('story_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
 
                 </form>
             </div>

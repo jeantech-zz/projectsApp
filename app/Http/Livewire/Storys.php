@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Story;
 use App\Models\Project;
+use App\Models\Ticket;
 
 class Storys extends Component
 {
@@ -54,6 +55,23 @@ class Storys extends Component
 			'name' => $this-> name,
 			'description' => $this-> description,
 			'project_id' => $this-> project_id
+        ]);
+
+        $newStory = Story::select('name','id')
+                ->where('name', $this-> name)
+                ->where('description', $this-> description)
+                ->where('project_id', $this-> project_id)
+                ->first();
+        $idStory=$newStory->id;
+
+        $descriptionTicket="Create Ticket of ".$this-> name;
+        $nameTicket="Create_Ticket_".$this-> name;
+
+        Ticket::create([ 
+			'name' => $nameTicket,
+			'description' => $descriptionTicket,
+			'status' => "Activo",
+			'story_id' => $idStory
         ]);
         
         $this->resetInput();

@@ -20,8 +20,12 @@
                 <input wire:model="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
-                <label for="project_id"></label>
-                <input wire:model="project_id" type="text" class="form-control" id="project_id" placeholder="Project Id">@error('project_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select  wire:model="project_id" name="project_id" class="form-control custom-select">
+                    <option value="">Select Project</option>
+                    @foreach($projects as $project)}
+                        <option value="{{ $project->id }}">{{ $project->name }}</option>
+                    @endforeach
+                </select>
             </div>
 
                 </form>

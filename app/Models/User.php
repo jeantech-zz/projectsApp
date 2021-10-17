@@ -67,4 +67,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Company', 'id', 'company_id');
     }
+
+    public function nameProject (){
+        return $this->company->name;
+    }
 }
